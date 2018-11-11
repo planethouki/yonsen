@@ -1,0 +1,31 @@
+const { spawn } = require('child_process');
+
+// const folder = "payload_40000_8";
+// const folder = "payload_20000_4";
+// const folder = "payload_160000_8";
+const folder = "payload_320000_8";
+
+let r = [
+  spawn('node', ['yonsenlt.js', folder + '/payload0001.txt']),
+  spawn('node', ['yonsenlt.js', folder + '/payload0002.txt']),
+  spawn('node', ['yonsenlt.js', folder + '/payload0003.txt']),
+  spawn('node', ['yonsenlt.js', folder + '/payload0004.txt']),
+  spawn('node', ['yonsenlt.js', folder + '/payload0005.txt']),
+  spawn('node', ['yonsenlt.js', folder + '/payload0006.txt']),
+  spawn('node', ['yonsenlt.js', folder + '/payload0007.txt']),
+  spawn('node', ['yonsenlt.js', folder + '/payload0008.txt']),
+];
+
+r.map((s) => {
+  s.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+  });
+
+  s.stderr.on('data', (data) => {
+    console.log(`stderr: ${data}`);
+  });
+
+  s.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+  });
+});

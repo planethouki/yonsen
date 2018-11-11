@@ -1,0 +1,19 @@
+{
+  "name": "yonsen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test1": "node test.js 1",
+    "test2": "node test.js 500",
+    "test3": "node sendtx320000-8.js",
+    "view": "node blockchain.js"
+  },
+  "author": "planethouki",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "loadtest": "^3.0.4",
+    "nem2-sdk": "^0.10.1",
+    "request": "^2.88.0"
+  }
+}
