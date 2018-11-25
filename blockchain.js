@@ -41,7 +41,7 @@ const Address = nem2Sdk.Address,
 const blockchainHttp = new BlockchainHttp('http://localhost:3000');
 
 rx.interval(1000).pipe(
-    op.take(50),
+    op.take(100),
     op.flatMap(x => blockchainHttp.getBlockByHeight(x+1))
 ).subscribe((blockInfo) => {
     const data = {
