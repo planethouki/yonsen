@@ -1,6 +1,10 @@
 const { spawn } = require('child_process');
+const fs = require('fs');
 
 let num = 320000;
+if (!fs.existsSync('payload_320000_8')) {
+  fs.mkdirSync('payload_320000_8');
+};
 
 let r = [
   spawn('node', ['yonsenwa.js', 'payload_320000_8/payload0001.txt', num]),
