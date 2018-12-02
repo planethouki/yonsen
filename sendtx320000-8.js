@@ -1,19 +1,17 @@
 const { spawn } = require('child_process');
 
-// const folder = "payload_40000_8";
-// const folder = "payload_20000_4";
-// const folder = "payload_160000_8";
 const folder = "payload_320000_8";
+const persec = 500;
 
 let r = [
-  spawn('node', ['yonsenlt.js', folder + '/payload0001.txt']),
-  spawn('node', ['yonsenlt.js', folder + '/payload0002.txt']),
-  spawn('node', ['yonsenlt.js', folder + '/payload0003.txt']),
-  spawn('node', ['yonsenlt.js', folder + '/payload0004.txt']),
-  spawn('node', ['yonsenlt.js', folder + '/payload0005.txt']),
-  spawn('node', ['yonsenlt.js', folder + '/payload0006.txt']),
-  spawn('node', ['yonsenlt.js', folder + '/payload0007.txt']),
-  spawn('node', ['yonsenlt.js', folder + '/payload0008.txt']),
+  spawn('node', ['yonsenlt.js', folder + '/payload0001.txt', persec]),
+  spawn('node', ['yonsenlt.js', folder + '/payload0002.txt', persec]),
+  spawn('node', ['yonsenlt.js', folder + '/payload0003.txt', persec]),
+  spawn('node', ['yonsenlt.js', folder + '/payload0004.txt', persec]),
+  spawn('node', ['yonsenlt.js', folder + '/payload0005.txt', persec]),
+  spawn('node', ['yonsenlt.js', folder + '/payload0006.txt', persec]),
+  spawn('node', ['yonsenlt.js', folder + '/payload0007.txt', persec]),
+  spawn('node', ['yonsenlt.js', folder + '/payload0008.txt', persec]),
 ];
 
 r.map((s) => {

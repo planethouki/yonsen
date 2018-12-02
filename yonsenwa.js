@@ -54,7 +54,6 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-let txPayloads = [];
 
 console.log(Date.now());
 
@@ -67,20 +66,21 @@ if (file == undefined) {
 
 const num = process.argv[3] || 5000;
 
+let txPayloads = [];
 
-for (let i = 0; i < num; i++) {
-    if (i % 100 == 0) {
+for (let i = 1; i <= num; i++) {
+    if (i % 1000 == 0) {
         console.log(`${i}th tx created`);
+        const writeData = txPayloads.join('\n');
+        fs.appendFileSync(file, writeData + '\n');
+        txPayloads = [];
     }
     const privateKey1 = privateKeys[getRandomInt(privateKeys.length)];
     const sender = Account.createFromPrivateKey(privateKey1,NetworkType.MIJIN_TEST);
     const privateKey2 = privateKeys[getRandomInt(privateKeys.length)];
     const recipient = Account.createFromPrivateKey(privateKey2,NetworkType.MIJIN_TEST);
     const payload = createTxPayload(sender, recipient.address, getRandomInt(10));
-    // txPayloads.push(payload);
-    fs.appendFile(file, payload + '\n', (err) => {
-        if (err) throw err;
-      });
+    txPayloads.push(payload);
 }
 console.log(Date.now());
 

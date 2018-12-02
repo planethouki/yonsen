@@ -57,11 +57,11 @@ function getRandomInt(max) {
 
 const num = process.argv[2] || 1;
 let txPayloads = [];
-console.log(Date.now());
+console.log(`start timestamp ${Date.now()}`);
 
 for (let i = 0; i < num; i++) {
     if (i % 100 == 0) {
-        console.log(i);
+        console.log(`${i+1}th transaction sent`);
     }
     const privateKey1 = privateKeys[getRandomInt(privateKeys.length)];
     const sender = Account.createFromPrivateKey(privateKey1,NetworkType.MIJIN_TEST);
@@ -83,4 +83,4 @@ for (let i = 0; i < num; i++) {
     });
 }
 
-console.log(Date.now());
+console.log(`end timestamp ${Date.now()}`);
