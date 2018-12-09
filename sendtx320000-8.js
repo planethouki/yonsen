@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 
 const folder = "payload_320000_8";
-const persec = 500;
+const persec = 505;
 
 let r = [
   spawn('node', ['yonsenlt.js', folder + '/payload0001.txt', persec]),
