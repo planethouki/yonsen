@@ -36,13 +36,21 @@ const Address = nem2Sdk.Address,
     TransactionType = nem2Sdk.TransactionType,
     BlockchainHttp = nem2Sdk.BlockchainHttp;
 
-
+const pageSize = 100;
 
 const blockchainHttp = new BlockchainHttp('http://localhost:3000');
 
-rx.interval(1000).pipe(
-    op.take(100),
-    op.flatMap(x => blockchainHttp.getBlockByHeight(x+1))
+blockchainHttp.getBlockchainHeight().pipe(
+    op.mergeMap(chainHeight => {
+        const getCount = pageSize < chainHeight.compact() ? pageSize : chainHeight.compact();
+        console.log(`Block Height: ${chainHeight.compact()}`);
+        console.log(`GetBlock Repeat: ${getCount}`);
+        return rx.interval(1000).pipe(
+            op.take(getCount),
+            op.mergeMap(count => rx.of(chainHeight.compact() - getCount + 1 + count))
+        )
+    }),
+    op.flatMap(blockNumber => blockchainHttp.getBlockByHeight(blockNumber))
 ).subscribe((blockInfo) => {
     const data = {
         "height": blockInfo.height.compact(),
