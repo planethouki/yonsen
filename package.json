@@ -11,7 +11,7 @@
     "create32": "node writetx320000-8.js",
     "create10": "node writetx100000-30.js",
     "view": "node blockchain.js",
-    "createag": "ndoe writeaggregatetx.js",
+    "createag": "node writeaggregatetx.js",
     "sendag": "node sendaggregatetx.js"
   },
   "author": "planethouki",
